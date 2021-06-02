@@ -1,56 +1,57 @@
-//NPM packages
-const inquirer = require("inquirer");
+//required packages
 const fs = require("fs");
 const path = require("path");
-const generate = require("/utils/generate");
+const inquirer = require("inquirer");
+const generate = require("./utils/generate");
 
 //User input
-const questions = [
-    {
+const questions = [{
         type: "input",
-        name: "githubUserName",
-        query: "Please enter your GitHub username.", 
+        name: "userName",
+        message: "Please enter your GitHub username.",
     },
     {
         type: "input",
         name: "email",
-        query: "Please enter your email.", 
+        message: "Please enter your email.",
     },
     {
         type: "input",
         name: "repo",
-        query: "What is the name of this repository?", 
+        message: "What is the name of this repository?",
     },
     {
         type: "input",
         name: "desc",
-        query: "Please provide a description of this repository.", 
+        message: "Please provide a description of this repository.",
     },
     {
         type: "list",
         name: "license",
-        query: "Does this repository have any licenses?", 
-        options: ["None", "Node", "Apache 2.0", "GPL 3.0", "MIT"],
+        message: "Does this repository have any licenses?",
+        choices: ["None", "Node", "Apache 2.0", "GPL 3.0", "MIT"],
     },
     {
         type: "input",
         name: "install",
-        query: "What command should be installed for this repository?", 
+        message: "What command should be installed for this repository?",
+        default: "npm i",
     },
     {
         type: "input",
         name: "test",
-        query: "What command should be ran to run tests on this repository?", 
+        message: "What command should be ran to run tests on this repository?",
+        default: "npm test",
     },
     {
         type: "input",
         name: "usage",
-        query: "What does the user need to know about using the repo?", 
+        message: "What does the user need to know about using the repository?",
     },
     {
         type: "input",
         name: "contribute",
-        query: "What does the user need to know about contributing to the repo?", 
+        message: "What does the user need to know about contributing to the repository?",
     },
 
 ];
@@ -64,7 +65,9 @@ function writeFile(filename, data) {
 function start() {
     inquirer.prompt(questions).then((inquirerRes) => {
         console.log("Begin readMe...");
-        writeFile("readMe.md", generate({inquirerRes}));
+        writeFile("readMe.md", generate({
+           ...inquirerRes
+        }));
     });
 }
 

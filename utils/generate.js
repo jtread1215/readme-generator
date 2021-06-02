@@ -25,21 +25,22 @@ function licenseReadMe(license) {
 
 //function for readMe
 function generate(data) {
-    return `# ${data.title}
+    return `# ${data.repo}
     ${licenseBadge(data.license)}
 ## Description
 
-${data.description}
+${data.desc}
 
 ## Table of Contents 
 
-* [Installation](#installation)
+* [Installation](#install)
 
 * [Usage](#usage)
 ${licenseLink(data.license)}
-* [Contributing](#contributing)
 
-* [Tests](#tests)
+* [Contribute](#contribute)
+
+* [Test](#test)
 
 * [Questions](#questions)
 
@@ -47,9 +48,7 @@ ${licenseLink(data.license)}
 
 To install necessary dependencies, run the following command:
 
-\`\`\`
-${data.installation}
-\`\`\`
+${data.install}
 
 ## Usage
 
@@ -59,25 +58,18 @@ ${licenseReadMe(data.license)}
   
 ## Contributing
 
-${data.contributing}
+${data.contribute}
 
 ## Tests
 
 To run tests, run the following command:
 
-\`\`\`
 ${data.test}
-\`\`\`
 
 ## Questions
 
-If you have any questions about the repo, open an issue or contact me directly at ${
-    data.email
-  }. You can find more of my work at [${data.github}](https://github.com/${
-    data.github
-  }/).
-
-`;
+If you have any questions about this repository, please feel free to contact me at ${data.email}. 
+You can also find all of my other repositories at [${data.userName}](https://github.com/${data.userName}/).`;
 }
 
 module.exports = generate;
